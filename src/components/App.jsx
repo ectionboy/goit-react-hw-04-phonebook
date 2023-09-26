@@ -13,14 +13,13 @@ export const App = () => {
     if (localData && JSON.parse(localData).length) {
       setContacts(JSON.parse(localData));
     }
-  },[]);
+  }, []);
   useEffect(() => {
     contacts && localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
-useEffect(() => {
-  setFilter(contacts)
-
-}, [contacts]);
+  useEffect(() => {
+    setFilter(contacts);
+  }, [contacts]);
   const createContact = body => {
     const isExist = contacts.find(el => el.name === body.name);
     if (isExist) {
@@ -31,21 +30,20 @@ useEffect(() => {
     const newContact = {
       ...body,
       id: nanoid(),
-    }
-    setContacts((prev) => [newContact, ...prev])
+    };
+    setContacts(prev => [newContact, ...prev]);
   };
-  
-  const deleteContact = (id) => {
-    setContacts((prev) => prev.filter((el) => el.id !== id))
+
+  const deleteContact = id => {
+    setContacts(prev => prev.filter(el => el.id !== id));
   };
-  const doFilter = (filterValue) => {
-    console.log(filterValue.target.value)
+  const doFilter = filterValue => {
     setFilter(
-      contacts.filter((el)=>(
+      contacts.filter(el =>
         el.name.toLowerCase().includes(filterValue.target.value.toLowerCase())
-      ))
-    )
-  }
+      )
+    );
+  };
 
   // const doFilter = ({ target: { value } }) => {
   //   this.setState({ filter: value });
