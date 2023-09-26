@@ -46,10 +46,7 @@ useEffect(() => {
       ))
     )
   }
-  useEffect(() => {
-    console.log((contacts ?? filter))
-    
-  }, [filter]);
+
   // const doFilter = ({ target: { value } }) => {
   //   this.setState({ filter: value });
   // };
